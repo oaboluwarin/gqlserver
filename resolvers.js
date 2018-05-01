@@ -39,5 +39,10 @@ module.exports = {
     }
     coursesData.push(newCourse)
     return await newCourse
+  },
+
+  async removeCourse(args) {
+    const { id } = args;
+    return await coursesData.splice(id - 1, 1);
   }
 }

@@ -5,7 +5,8 @@ const {
   getCourse,
   getCourses,
   updateCourseTopic,
-  createNewCourse
+  createNewCourse,
+  removeCourse
 } = require('./resolvers');
 
 // GraphQL schema
@@ -17,6 +18,7 @@ const schema = buildSchema(`
   type Mutation {
     updateCourseTopic(id: Int!, topic: String!): Course
     createCourse(topic: String!, title: String!, author: String!, description: String!, url: String!): Course
+    removeCourse(id: Int!): Course
   }
   type Course {
     id: Int
@@ -33,7 +35,8 @@ const root = {
   course: getCourse,
   courses: getCourses,
   updateCourseTopic: updateCourseTopic,
-  createCourse: createNewCourse
+  createCourse: createNewCourse,
+  removeCourse
 };
 
 // Create an express server and a GraphQL endpoint
