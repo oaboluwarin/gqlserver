@@ -7,6 +7,7 @@ module.exports = {
         return course.id == id;
     })[0];
   },
+
   async getCourses(args) {
     const { topic } = args;
     if (topic) {
@@ -14,6 +15,14 @@ module.exports = {
     } else {
         return await coursesData;
     }
+  },
+  async updateCourseTopic ({id, topic}) {
+    await coursesData.map(course => {
+        if (course.id === id) {
+            course.topic = topic;
+            return course;
+        }
+    });
+    return await coursesData.filter(course => course.id === id) [0];
   }
-
 }

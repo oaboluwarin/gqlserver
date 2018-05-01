@@ -1,14 +1,21 @@
 const express = require('express');
 const express_graphql = require('express-graphql');
 const { buildSchema } = require('graphql');
-const { getCourse, getCourses } = require('./resolvers');
+const {
+  getCourse,
+  getCourses,
+  updateCourseTopic
+} = require('./resolvers');
 
 // GraphQL schema
 const schema = buildSchema(`
   type Query {
     course(id: Int!): Course
     courses(topic: String): [Course]
-  },
+  }
+  type Mutation {
+    updateCourseTopic(id: Int!, topic: String!): Course
+  }
   type Course {
     id: Int
     title: String
@@ -22,7 +29,8 @@ const schema = buildSchema(`
 // Root resolver
 const root = {
   course: getCourse,
-  courses: getCourses
+  courses: getCourses,
+  updateCourseTopic: updateCourseTopic
 };
 
 // Create an express server and a GraphQL endpoint
