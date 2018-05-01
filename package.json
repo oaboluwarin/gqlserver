@@ -1,0 +1,7 @@
+{
+  "name": "graphql",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "oaboluwarin <oreoluwa.aboluwarin@andela.com>",
+  "license": "MIT"
+}
