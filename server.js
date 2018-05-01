@@ -1,6 +1,6 @@
 const express = require('express');
 const express_graphql = require('express-graphql');
-const { buildSchema } = require('graphql');
+const schema = require('./schema');
 const {
   getCourse,
   getCourses,
@@ -8,27 +8,6 @@ const {
   createNewCourse,
   removeCourse
 } = require('./resolvers');
-
-// GraphQL schema
-const schema = buildSchema(`
-  type Query {
-    course(id: Int!): Course
-    courses(topic: String): [Course]
-  }
-  type Mutation {
-    updateCourseTopic(id: Int!, topic: String!): Course
-    createCourse(topic: String!, title: String!, author: String!, description: String!, url: String!): Course
-    removeCourse(id: Int!): Course
-  }
-  type Course {
-    id: Int
-    title: String
-    author: String
-    description: String
-    topic: String
-    url: String
-  }
-`);
 
 // Root resolver
 const root = {
