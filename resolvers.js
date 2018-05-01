@@ -16,6 +16,7 @@ module.exports = {
         return await coursesData;
     }
   },
+
   async updateCourseTopic ({id, topic}) {
     await coursesData.map(course => {
         if (course.id === id) {
@@ -24,5 +25,19 @@ module.exports = {
         }
     });
     return await coursesData.filter(course => course.id === id) [0];
+  },
+
+  async createNewCourse(args) {
+    const { title, author, description, topic, url } = args;
+    const newCourse = {
+      id: coursesData.length + 1,
+      title,
+      author,
+      description,
+      topic,
+      url
+    }
+    coursesData.push(newCourse)
+    return await newCourse
   }
 }
